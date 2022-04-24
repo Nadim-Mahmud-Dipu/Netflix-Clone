@@ -19,7 +19,7 @@ function Row(props) {
         fetchData();
     }, [props.fetchURL]);
 
-    console.table(movies);
+    // console.table(movies);
 
     return (
         <div className="row">
@@ -29,8 +29,10 @@ function Row(props) {
                 {/* Several row_poster(s) */}
                 {movies.map(movie => (
                     <img
-                        className="row_poster"
-                        src={`${base_url}${movie.poster_path}`} alt={movie.name}
+                        key={movie.id}
+                        className={`row_poster ${props.isLargeRow && "row_posterLarge"}`}
+                        src={`${base_url}${props.isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                        alt={movie.name}
                     />
                 ))}
             </div>
